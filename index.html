@@ -4,36 +4,232 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IMY Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1a1a1a, #000000);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      margin: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 2s ease-in-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0;
+      animation: glow 2s infinite alternate;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #aaa;
+    }
+
+    /* XMB Navigation */
+    .xmb-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2; /* Ensure it's above the hero section */
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 40px;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0.7;
+    }
+
+    .nav-item i {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .nav-item span {
+      font-size: 1.2rem;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-item:hover {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+
+    .nav-item:hover i {
+      color: #6200ea;
+      text-shadow: 0 0 20px rgba(98, 0, 234, 0.8);
+    }
+
+    .nav-item:hover span {
+      opacity: 1;
+    }
+
+    /* Content Sections */
+    .content-section {
+      display: none;
+      padding: 20px;
+      text-align: center;
+      animation: slideIn 0.5s ease-in-out;
+      position: relative;
+      z-index: 3; /* Ensure content is above everything */
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .content-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .content-section p {
+      font-size: 1.2rem;
+      color: #aaa;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .content-section a {
+      color: #6200ea;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .content-section a:hover {
+      color: #bb86fc;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 4;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(98, 0, 234, 0.8);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
+  <!-- Hero Section -->
+  <section class="hero">
     <h1>IMY Portfolio</h1>
-  </header>
+    <p>Video Editor | Android ROM Developer</p>
+  </section>
 
-  <section id="about">
+  <!-- XMB Navigation -->
+  <nav class="xmb-nav">
+    <div class="nav-item" data-target="about">
+      <i class="material-icons">person</i>
+      <span>About</span>
+    </div>
+    <div class="nav-item" data-target="projects">
+      <i class="material-icons">work</i>
+      <span>Projects</span>
+    </div>
+    <div class="nav-item" data-target="contact">
+      <i class="material-icons">mail</i>
+      <span>Contact</span>
+    </div>
+  </nav>
+
+  <!-- Content Sections -->
+  <section id="about" class="content-section active">
     <h2>About Me</h2>
-    <p>
-      Hi, I'm IMYdev, a video editor and a hobbyist Android ROM developer, I'm also the lead developer of <a href="https://ronitkrshah.github.io/imy-rom/">IMY-ROM</a>.
-    </p>
+    <p>Hi, I'm IMYdev, a video editor and a hobbyist Android ROM developer. I'm also the lead developer of IMY-ROM.</p>
   </section>
-
-  <section id="projects">
+  <section id="projects" class="content-section">
     <h2>Projects</h2>
-    <p>
-      You can check out my projects on <a target=”GitHub” href="https://github.com/IMYdev">GitHub</a>.
-    </p>
+    <p>You can check out my projects on <a href="https://github.com/IMYdev" target="_blank">GitHub</a>.</p>
   </section>
-
-  <section id="contact">
+  <section id="contact" class="content-section">
     <h2>Contact</h2>
-    <p>
-      You can reach out to me by <a target=”Telegram” href="https://t.me/PearOperatingSystem">Telegram</a>.
-    </p>
+    <p>You can reach out to me by <a href="https://t.me/IMYdev" target="_blank">Telegram</a>.</p>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2024 IMYdev.</p>
+    © 2025 IMYdev. All rights reserved.
   </footer>
+
+  <script>
+    // Add interactivity to XMB navigation
+    const navItems = document.querySelectorAll('.nav-item');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const target = item.getAttribute('data-target');
+        contentSections.forEach(section => {
+          section.classList.remove('active');
+          if (section.id === target) {
+            section.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
