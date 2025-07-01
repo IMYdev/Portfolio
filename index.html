@@ -1,235 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMY Portfolio</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <style>
-    /* General Styles */
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #1a1a1a, #000000);
-      color: #fff;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMY Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #0d0d0d;
+            color: #e0e0e0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 100px 20px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      margin: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 2s ease-in-out;
-      position: relative;
-      z-index: 1;
-    }
+        /* Dynamic Background */
+        .background-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f0f, #1a0f30, #0f0f0f);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -1;
+            opacity: 0.8;
+        }
 
-    .hero h1 {
-      font-size: 3rem;
-      margin: 0;
-      animation: glow 2s infinite alternate;
-    }
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-    .hero p {
-      font-size: 1.2rem;
-      color: #aaa;
-    }
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            margin: 30px auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            width: 90%;
+        }
 
-    /* XMB Navigation */
-    .xmb-nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 2; /* Ensure it's above the hero section */
-    }
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+            color: #bb86fc; /* Purple glow */
+            text-shadow: 0 0 15px rgba(187, 134, 252, 0.7);
+            animation: pulseGlow 3s infinite alternate;
+        }
 
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 40px;
-      cursor: pointer;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      opacity: 0.7;
-    }
+        .hero p {
+            font-size: 1.3rem;
+            color: #a0a0a0;
+            margin: 0;
+        }
 
-    .nav-item i {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      color: #fff;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
+        /* XMB Navigation */
+        .xmb-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+            z-index: 20;
+            margin-top: 20px;
+        }
 
-    .nav-item span {
-      font-size: 1.2rem;
-      color: #fff;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 30px;
+            cursor: pointer;
+            transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+            opacity: 0.6;
+            filter: grayscale(80%);
+            position: relative;
+        }
 
-    .nav-item:hover {
-      transform: scale(1.2);
-      opacity: 1;
-    }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 0;
+            height: 3px;
+            background-color: #03dac6; /* Teal accent */
+            border-radius: 2px;
+            transition: width 0.3s ease, transform 0.3s ease;
+        }
 
-    .nav-item:hover i {
-      color: #6200ea;
-      text-shadow: 0 0 20px rgba(98, 0, 234, 0.8);
-    }
+        .nav-item:hover {
+            transform: translateY(-5px) scale(1.1);
+            opacity: 1;
+            filter: grayscale(0%);
+        }
 
-    .nav-item:hover span {
-      opacity: 1;
-    }
+        .nav-item.active {
+            transform: translateY(-10px) scale(1.2);
+            opacity: 1;
+            filter: grayscale(0%);
+        }
 
-    /* Content Sections */
-    .content-section {
-      display: none;
-      padding: 20px;
-      text-align: center;
-      animation: slideIn 0.5s ease-in-out;
-      position: relative;
-      z-index: 3; /* Ensure content is above everything */
-    }
+        .nav-item.active::after {
+            width: 80%;
+            transform: translateX(-50%) scaleX(1);
+        }
 
-    .content-section.active {
-      display: block;
-    }
+        .nav-item i {
+            font-size: 3.5rem;
+            margin-bottom: 8px;
+            color: #bb86fc;
+            text-shadow: 0 0 12px rgba(187, 134, 252, 0.5);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
 
-    .content-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
+        .nav-item span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
 
-    .content-section p {
-      font-size: 1.2rem;
-      color: #aaa;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+        .nav-item:hover span, .nav-item.active span {
+            opacity: 1;
+        }
 
-    .content-section a {
-      color: #6200ea;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+        /* Content Sections */
+        .content-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align content to top within flex container */
+            padding: 20px;
+            position: relative;
+            z-index: 15;
+        }
 
-    .content-section a:hover {
-      color: #bb86fc;
-    }
+        .content-section {
+            display: none;
+            padding: 30px;
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: slideInFromBottom 0.6s ease-out;
+            max-width: 700px;
+            width: 90%;
+        }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #666;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      z-index: 4;
-    }
+        .content-section.active {
+            display: block;
+        }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
+        .content-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #03dac6; /* Teal accent */
+            text-shadow: 0 0 10px rgba(3, 218, 198, 0.5);
+        }
 
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-      }
-      to {
-        text-shadow: 0 0 20px rgba(98, 0, 234, 0.8);
-      }
-    }
+        .content-section p {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-  </style>
+        .content-section a {
+            color: #bb86fc;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            font-weight: bold;
+        }
+
+        .content-section a:hover {
+            color: #03dac6;
+            text-shadow: 0 0 8px rgba(3, 218, 198, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            position: relative;
+            z-index: 5;
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                text-shadow: 0 0 15px rgba(187, 134, 252, 0.7), 0 0 25px rgba(187, 134, 252, 0.4);
+            }
+            100% {
+                text-shadow: 0 0 25px rgba(187, 134, 252, 0.9), 0 0 40px rgba(187, 134, 252, 0.6);
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>IMY Portfolio</h1>
-    <p>Video Editor | Android ROM Developer</p>
-  </section>
+    <div class="background-gradient"></div>
 
-  <!-- XMB Navigation -->
-  <nav class="xmb-nav">
-    <div class="nav-item" data-target="about">
-      <i class="material-icons">person</i>
-      <span>About</span>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>IMY PORTFOLIO</h1>
+        <p>Video Editor | Android ROM Developer</p>
+    </section>
+
+    <!-- XMB Navigation -->
+    <nav class="xmb-nav">
+        <div class="nav-item active" data-target="about">
+            <i class="material-icons">person</i>
+            <span>ABOUT</span>
+        </div>
+        <div class="nav-item" data-target="projects">
+            <i class="material-icons">work</i>
+            <span>PROJECTS</span>
+        </div>
+        <div class="nav-item" data-target="contact">
+            <i class="material-icons">mail</i>
+            <span>CONTACT</span>
+        </div>
+    </nav>
+
+    <!-- Content Sections -->
+    <div class="content-container">
+        <section id="about" class="content-section active">
+            <h2>About Me</h2>
+            <p>I am IMY a.k.a IMYdev, I'm majoring in AI Engineering, focusing on the embedded systems aspects, my hobbies include video editing, and game development.</p>
+            <p>I love collecting vintage hardware and exploring it.</p>
+        </section>
+        <section id="projects" class="content-section">
+            <h2>My Projects</h2>
+            <p>You can explore my open-source projects and contributions on my **<a href="https://github.com/IMYdev" target="_blank">GitHub profile</a>**.</p>
+            <p>There you can find stuff like games I'm working on and custom Android ROMs and recoveries for devices I maintain.</p>
+        </section>
+        <section id="contact" class="content-section">
+            <h2>Get in Touch</h2>
+            <p>The best way to reach me is through **<a href="https://t.me/IMYdev" target="_blank">Telegram</a>**.</p>
+            <p>I'm always open to trying out cool ideas.</p>
+        </section>
     </div>
-    <div class="nav-item" data-target="projects">
-      <i class="material-icons">work</i>
-      <span>Projects</span>
-    </div>
-    <div class="nav-item" data-target="contact">
-      <i class="material-icons">mail</i>
-      <span>Contact</span>
-    </div>
-  </nav>
 
-  <!-- Content Sections -->
-  <section id="about" class="content-section active">
-    <h2>About Me</h2>
-    <p>Hi, I'm IMYdev, a video editor and a hobbyist Android ROM developer. I'm also the lead developer of IMY-ROM.</p>
-  </section>
-  <section id="projects" class="content-section">
-    <h2>Projects</h2>
-    <p>You can check out my projects on <a href="https://github.com/IMYdev" target="_blank">GitHub</a>.</p>
-  </section>
-  <section id="contact" class="content-section">
-    <h2>Contact</h2>
-    <p>You can reach out to me by <a href="https://t.me/IMYdev" target="_blank">Telegram</a>.</p>
-  </section>
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 IMYdev. All rights reserved. Inspired by the XrossMediaBar.
+    </footer>
 
-  <!-- Footer -->
-  <footer>
-    © 2025 IMYdev. All rights reserved.
-  </footer>
+    <script>
+        const navItems = document.querySelectorAll('.nav-item');
+        const contentSections = document.querySelectorAll('.content-section');
 
-  <script>
-    // Add interactivity to XMB navigation
-    const navItems = document.querySelectorAll('.nav-item');
-    const contentSections = document.querySelectorAll('.content-section');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Deactivate current active nav item
+                document.querySelector('.nav-item.active').classList.remove('active');
+                // Activate clicked nav item
+                item.classList.add('active');
 
-    navItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const target = item.getAttribute('data-target');
-        contentSections.forEach(section => {
-          section.classList.remove('active');
-          if (section.id === target) {
-            section.classList.add('active');
-          }
+                const target = item.getAttribute('data-target');
+
+                // Deactivate all content sections
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Activate the targeted content section
+                document.getElementById(target).classList.add('active');
+            });
         });
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
