@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMY Portfolio</title>
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
@@ -14,7 +17,7 @@
             padding: 0;
             background: #0d0d0d;
             color: #e0e0e0;
-            overflow: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -51,7 +54,7 @@
             text-align: center;
             padding: 80px 20px 40px;
             background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px); /* Can be performance intensive */
             margin: 30px auto;
             border-radius: 20px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
@@ -166,7 +169,7 @@
             display: none;
             padding: 30px;
             background: rgba(18, 18, 18, 0.7);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); /* Can be performance intensive */
             border-radius: 15px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             text-align: center;
@@ -249,6 +252,159 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- Responsive Design --- */
+
+        /* For Tablets and smaller desktops (max-width: 768px) */
+        @media screen and (max-width: 768px) {
+            .hero {
+                padding: 60px 15px 30px;
+                margin: 20px auto;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .xmb-nav {
+                flex-wrap: wrap; /* Allow items to wrap to next line */
+                margin-top: 10px;
+            }
+
+            .nav-item {
+                margin: 0 20px 20px; /* Adjust spacing for wrapping */
+            }
+
+            .nav-item i {
+                font-size: 3rem;
+            }
+
+            .nav-item span {
+                font-size: 1rem;
+            }
+
+            .nav-item.active {
+                transform: translateY(-8px) scale(1.15);
+            }
+
+            .content-section {
+                padding: 25px;
+                width: 95%; /* Make content wider on smaller screens */
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+
+            .content-section p {
+                font-size: 1rem;
+            }
+        }
+
+        /* For Mobile Phones (max-width: 480px) */
+        @media screen and (max-width: 480px) {
+            .hero {
+                padding: 40px 10px 20px;
+                margin: 15px auto;
+                border-radius: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .xmb-nav {
+                flex-direction: row; /* Keep horizontal for now, but adjust spacing */
+                justify-content: space-around; /* Distribute items evenly */
+                padding: 10px 0;
+                margin-top: 5px;
+            }
+
+            .nav-item {
+                margin: 0 10px; /* Reduce margin further */
+            }
+
+            .nav-item i {
+                font-size: 2.5rem;
+                margin-bottom: 5px;
+            }
+
+            .nav-item span {
+                font-size: 0.9rem;
+                opacity: 1; /* Always show text on mobile for easier tapping */
+            }
+
+            .nav-item.active {
+                transform: translateY(-5px) scale(1.1);
+            }
+
+            .nav-item::after {
+                bottom: -5px; /* Adjust underline position */
+            }
+
+            .content-container {
+                padding: 10px;
+            }
+
+            .content-section {
+                padding: 20px;
+                border-radius: 10px;
+                width: 98%; /* Maximize width on very small screens */
+            }
+
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .content-section p {
+                font-size: 0.95rem;
+            }
+
+            footer {
+                padding: 10px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Optimization for very low-end devices or users preferring reduced motion */
+        @media screen and (max-width: 360px), (prefers-reduced-motion: reduce) {
+            /* Reduce or remove performance-heavy properties */
+            .hero, .content-section {
+                backdrop-filter: none; /* Disable blur for performance */
+                background: rgba(0, 0, 0, 0.8); /* Use solid background instead */
+            }
+
+            /* Disable complex animations */
+            .background-gradient,
+            .hero h1,
+            .nav-item,
+            .content-section {
+                animation: none !important; /* Remove all animations */
+                transition: none !important; /* Remove all transitions */
+            }
+
+            .nav-item.active {
+                transform: none; /* Remove transform for active state */
+            }
+
+            .nav-item::after {
+                display: none; /* Hide underline animation */
+            }
+
+            .nav-item:hover {
+                transform: none; /* Remove hover transform */
+                opacity: 1; /* Ensure full opacity on hover */
+                filter: none; /* Remove grayscale filter */
+            }
+        }
     </style>
 </head>
 <body>
@@ -307,7 +463,10 @@
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 // Deactivate current active nav item
-                document.querySelector('.nav-item.active').classList.remove('active');
+                const currentActiveNavItem = document.querySelector('.nav-item.active');
+                if (currentActiveNavItem) {
+                    currentActiveNavItem.classList.remove('active');
+                }
                 // Activate clicked nav item
                 item.classList.add('active');
 
