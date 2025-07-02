@@ -430,6 +430,10 @@
             <i class="material-icons">mail</i>
             <span>CONTACT</span>
         </div>
+        <div class="nav-item" data-target="acknowledgements">
+            <i class="material-icons">copyright</i>
+            <span>ACKNOWLEDGE</span>
+        </div>
     </nav>
 
     <!-- Content Sections -->
@@ -442,34 +446,98 @@
         <section id="projects" class="content-section">
             <h2>My Projects</h2>
             <p>You can explore my open-source projects and contributions on my <a href="https://github.com/IMYdev" target="_blank">GitHub profile</a>.</p>
-            <p>There you can find stuff like games I'm working on and custom Android ROMs and recoveries for devices I maintain.</p>
+            <p>There you can find stuff like games I'm working on and custom Android stuff for devices I maintain.</p>
         </section>
         <section id="contact" class="content-section">
             <h2>Get in Touch</h2>
             <p>The best way to reach me is through <a href="https://t.me/IMYdev" target="_blank">Telegram</a>.</p>
             <p>I'm always open to trying out cool ideas.</p>
         </section>
+        <section id="acknowledgements" class="content-section">
+            <h2>Acknowledgements</h2>
+            <p>This portfolio design is inspired by the XrossMediaBar (XMB) interface.</p>
+            <p>Audio used: </p>
+            <ul>
+                <li>BGM - By: <a href="https://pixabay.com/users/audiopapkin-14728698/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=303243">Paweł Spychała</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=303243">Pixabay</a></li>
+                <li>SFX - PS4 UI SFX.</li>
+            </ul>
+        </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        &copy; 2025 IMYdev. All rights reserved. Inspired by the XrossMediaBar.
+        &copy; 2025 IMYdev. All rights reserved.
     </footer>
+
+    <!-- Audio Elements -->
+    <!--
+        Place your audio files in an 'audio' folder relative to your HTML file.
+        For example: audio/space_ambient.mp3, audio/select_click.mp3, audio/hover_blip.mp3
+        Remember to replace the 'src' values with your actual audio file paths.
+    -->
+    <audio id="backgroundAudio" loop autoplay>
+        <source src="audio/relaxing.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="selectSound">
+        <source src="audio/select.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
 
     <script>
         const navItems = document.querySelectorAll('.nav-item');
         const contentSections = document.querySelectorAll('.content-section');
 
+        // Get audio elements by their IDs
+        const backgroundAudio = document.getElementById('backgroundAudio');
+        const selectSound = document.getElementById('selectSound');
+
+        // Flag to track if the user has interacted with the page
+        let hasInteracted = false;
+        // Set volume to 30%
+        backgroundAudio.volume = 0.1;
+        /**
+         * Attempts to play the background audio.
+         * This function is called on the first user interaction (click or keydown)
+         * to bypass browser autoplay restrictions.
+         */
+        function startBackgroundAudio() {
+            if (!hasInteracted) {
+                backgroundAudio.play().catch(error => {
+                    // Log any errors if autoplay is still blocked
+                    console.log("Background audio autoplay blocked:", error);
+                    // You could add a UI element here to prompt the user to enable sound
+                });
+                hasInteracted = true; // Set flag to true after first interaction attempt
+            }
+        }
+
+
+
+        // Add event listeners to the document to detect the first user interaction
+        // The { once: true } option ensures the listener is removed after it fires once.
+        document.addEventListener('click', startBackgroundAudio, { once: true });
+        document.addEventListener('keydown', startBackgroundAudio, { once: true });
+
+        // Iterate over each navigation item to add event listeners
         navItems.forEach(item => {
+            // Add click event listener for navigation and select sound
             item.addEventListener('click', () => {
-                // Deactivate current active nav item
+                // Play the select sound
+                selectSound.currentTime = 0; // Rewind to the start of the sound for immediate playback
+                selectSound.play().catch(error => console.log("Select sound play blocked:", error));
+
+                // Deactivate the currently active navigation item
                 const currentActiveNavItem = document.querySelector('.nav-item.active');
                 if (currentActiveNavItem) {
                     currentActiveNavItem.classList.remove('active');
                 }
-                // Activate clicked nav item
+                // Activate the clicked navigation item
                 item.classList.add('active');
 
+                // Get the target content section ID from the data-target attribute
                 const target = item.getAttribute('data-target');
 
                 // Deactivate all content sections
