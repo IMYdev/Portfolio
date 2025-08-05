@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMY Portfolio</title>
-    <!-- Preconnect to Google Fonts for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -450,7 +449,7 @@
         </section>
         <section id="contact" class="content-section">
             <h2>Get in Touch</h2>
-            <p>The best way to reach me is through <a href="https://t.me/IMYdev" target="_blank">Telegram</a>.</p>
+            <p>More <a href="https://t.me/IMYbiohere" target="_blank">links</a>for my work.</p>
             <p>I'm always open to trying out cool ideas.</p>
         </section>
         <section id="acknowledgements" class="content-section">
@@ -469,12 +468,6 @@
         &copy; 2025 IMYdev. All rights reserved.
     </footer>
 
-    <!-- Audio Elements -->
-    <!--
-        Place your audio files in an 'audio' folder relative to your HTML file.
-        For example: audio/space_ambient.mp3, audio/select_click.mp3, audio/hover_blip.mp3
-        Remember to replace the 'src' values with your actual audio file paths.
-    -->
     <audio id="backgroundAudio" loop autoplay>
         <source src="audio/relaxing.ogg" type="audio/ogg">
         Your browser does not support the audio element.
@@ -496,7 +489,7 @@
 
         // Flag to track if the user has interacted with the page
         let hasInteracted = false;
-        // Set volume to 30%
+        // Set volume to 10%
         backgroundAudio.volume = 0.1;
         /**
          * Attempts to play the background audio.
@@ -508,7 +501,6 @@
                 backgroundAudio.play().catch(error => {
                     // Log any errors if autoplay is still blocked
                     console.log("Background audio autoplay blocked:", error);
-                    // You could add a UI element here to prompt the user to enable sound
                 });
                 hasInteracted = true; // Set flag to true after first interaction attempt
             }
