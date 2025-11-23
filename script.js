@@ -46,6 +46,21 @@ function triggerFlash(callback) {
     }, 300); 
 }
 
+unmuteBtn = document.querySelector('.unmute');
+let isMuted = true;
+
+unmuteBtn.addEventListener('click', () => {
+    isMuted = !isMuted;
+    if (isMuted) {
+        sfxForward.muted = true;
+        sfxBack.muted = true;
+        unmuteBtn.innerText = "🔇";
+    } else {
+        sfxForward.muted = false;
+        sfxBack.muted = false;
+        unmuteBtn.innerText = "🔊";
+    }
+});
 
 function switchView(key) {
     playForwardSound();
