@@ -48,6 +48,8 @@ function triggerFlash(callback) {
 
 unmuteBtn = document.querySelector('.unmute');
 let isMuted = true;
+sfxForward.muted = true;
+sfxBack.muted = true;
 
 unmuteBtn.addEventListener('click', () => {
     isMuted = !isMuted;
