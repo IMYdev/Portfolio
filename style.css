@@ -193,3 +193,63 @@ a {
     position: absolute; bottom: 2rem; right: 2rem;
     font-size: 0.8rem; color: #aaa; text-align: right;
 }
+
+/* For phones... */
+@media (max-width: 600px) {
+    body {
+        overflow: auto;
+        padding: 1rem;
+    }
+
+    .ui-container {
+        padding-left: 5%;
+        padding-right: 5%;
+        max-width: 100%;
+    }
+
+    .logo {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+    }
+
+    .menu-item {
+        font-size: 2rem;
+        padding-left: 5px;
+    }
+
+    .menu-item:hover {
+        padding-left: 10px;
+        letter-spacing: 1px;
+    }
+
+    .content-header {
+        font-size: 2rem;
+        padding-right: 1rem;
+    }
+
+    .content-body {
+        padding: 1rem;
+        border-left: 4px solid var(--me-red);
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.05);
+    }
+
+    .content-body p {
+        font-size: 1rem;
+    }
+
+    .btn-return {
+        font-size: 1.2rem;
+        padding: 0.4rem 1.5rem;
+    }
+
+    /* I'm not troubling myself with those lol */
+    .shard-1, .shard-2, .shard-3 {
+        display: none;
+    }
+
+    .footer {
+        font-size: 0.7rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
