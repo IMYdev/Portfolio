@@ -17,9 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const sfxForward = new Audio('audio/forward.ogg'); 
 const sfxBack = new Audio('audio/back.ogg'); 
+const music = new Audio('audio/bgm.mp3');
+music.loop = true;
+music.autoplay = true; 
+
 
 sfxForward.volume = 0.5;
 sfxBack.volume = 0.5;
+music.volume = 0.1;
+
 
 function playForwardSound() {
     sfxForward.currentTime = 0;
@@ -50,16 +56,19 @@ unmuteBtn = document.querySelector('.unmute');
 let isMuted = true;
 sfxForward.muted = true;
 sfxBack.muted = true;
+music.muted = true;
 
 unmuteBtn.addEventListener('click', () => {
     isMuted = !isMuted;
     if (isMuted) {
         sfxForward.muted = true;
         sfxBack.muted = true;
+        music.muted = true;
         unmuteBtn.innerText = "🔇";
     } else {
         sfxForward.muted = false;
         sfxBack.muted = false;
+        music.muted = false;
         unmuteBtn.innerText = "🔊";
     }
 });
