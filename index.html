@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMY's Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="bg-layer"></div>
     <div class="shard shard-1"></div>
@@ -13,18 +15,30 @@
     <div class="shard shard-3"></div>
 
     <div class="flash-overlay" id="flash"></div>
-    <div class="unmute">🔇</div>
+    <div class="unmute" id="unmute-btn">🔇</div>
 
     <div class="ui-container" id="view-menu">
         <div class="logo">IMY's <span>Portfolio</span></div>
-        <ul class="menu">
-            <li class="menu-item" onclick="switchView('about')" data-target="about">About me</li>
-            <li class="menu-item" onclick="switchView('projects')" data-target="projects">My projects</li>
-            <a class="menu-item" target="_blank" href="mailto:omranmansour096@gmail.com">Contact me</a><br>
-            <a class="menu-item" target="_blank" href="https://blog.imy.com.ly">My blog</a><br>
-            <a class="menu-item" target="_blank" href="https://git.imy.com.ly">My Git Server</a>
-            <li class="menu-item" onclick="exitGame()">Disconnect</li>
-        </ul>
+        <nav class="menu">
+            <div class="menu-item" onclick="switchView('about')">
+                <span class="label">About me</span>
+            </div>
+            <div class="menu-item" onclick="switchView('projects')">
+                <span class="label">My projects</span>
+            </div>
+            <a class="menu-item" target="_blank" href="mailto:omranmansour096@gmail.com">
+                <span class="label">Contact me</span>
+            </a>
+            <a class="menu-item" target="_blank" href="https://blog.imy.com.ly">
+                <span class="label">My blog</span>
+            </a>
+            <a class="menu-item" target="_blank" href="https://git.imy.com.ly">
+                <span class="label">My Git Server</span>
+            </a>
+            <div class="menu-item" onclick="exitGame()">
+                <span class="label">Disconnect</span>
+            </div>
+        </nav>
     </div>
 
     <div class="ui-container hidden" id="view-content">
@@ -42,7 +56,7 @@
         BGM - BRS: The Game.<br>
         SFX - Mirror's Edge.
     </div>
-
     <script src="script.js"></script>
 </body>
+
 </html>
