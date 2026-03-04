@@ -146,7 +146,7 @@ body.loaded {
 
 .menu {
     list-style: none;
-    line-height: 45px;
+    line-height: 3.5rem;
 }
 
 .menu-item {
@@ -154,7 +154,6 @@ body.loaded {
     font-weight: 700;
     text-transform: uppercase;
     color: #888;
-    margin-bottom: 0.8rem;
     cursor: pointer;
     width: fit-content;
     position: relative;
