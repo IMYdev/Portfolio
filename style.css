@@ -71,7 +71,6 @@ a {
     top: 16px;
 }
 
-
 .layout {
     display: grid;
     grid-template-columns: 264px minmax(0, 1fr);
@@ -155,7 +154,14 @@ a {
 
 .nav-tile:focus-visible {
     border-color: var(--accent);
+    background: var(--surface-hover);
     outline: none;
+    transform: translateX(2px);
+}
+
+.nav-tile:focus-visible .nav-tile-arrow {
+    color: var(--accent-soft);
+    transform: translateX(4px);
 }
 
 .nav-tile.is-active {
@@ -179,19 +185,6 @@ a {
     text-transform: uppercase;
     color: var(--text-secondary);
     padding: 0 var(--space-2);
-}
-
-a.tile[target="_blank"]::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.06) 50%, transparent 100%);
-    transform: translateX(-160%) skewX(-18deg);
-    pointer-events: none;
-    animation: sheen 6s ease-in-out infinite;
 }
 
 .page {
@@ -276,24 +269,6 @@ main {
         transform var(--motion-activate) ease;
 }
 
-.tile-grid a.tile[target="_blank"]:nth-child(2n)::after {
-    animation-delay: -3s;
-}
-
-.tile-grid a.tile[target="_blank"]:nth-child(3n)::after {
-    animation-delay: -4.5s;
-}
-
-@keyframes sheen {
-    0%, 55% {
-        transform: translateX(-160%) skewX(-18deg);
-    }
-
-    85%, 100% {
-        transform: translateX(260%) skewX(-18deg);
-    }
-}
-
 .tile-arrow {
     position: absolute;
     right: var(--space-5);
@@ -304,17 +279,15 @@ main {
 }
 
 a.tile[target="_blank"] .tile-arrow {
-    animation: arrow-pulse 4s ease-in-out infinite;
+    transform: rotate(-45deg);
 }
 
-@keyframes arrow-pulse {
-    0%, 100% {
-        opacity: 0.5;
-    }
+a.tile[target="_blank"]:hover .tile-arrow {
+    transform: rotate(-45deg) translateX(3px) translateY(-3px);
+}
 
-    50% {
-        opacity: 1;
-    }
+a.tile[target="_blank"]:focus-visible .tile-arrow {
+    transform: rotate(-45deg) translateX(3px) translateY(-3px);
 }
 
 .tile-wide,
@@ -333,7 +306,14 @@ a.tile:active {
 
 a.tile:focus-visible {
     border-color: var(--accent);
+    background: var(--surface-hover);
     outline: none;
+    transform: translateY(-2px);
+}
+
+a.tile:focus-visible .tile-arrow {
+    color: var(--accent-soft);
+    transform: translateX(4px);
 }
 
 .tile-meta {
@@ -426,7 +406,6 @@ a.tile:hover .tile-arrow {
     .nav-panel {
         display: none;
     }
-
     .hero {
         padding: 80px var(--margin-mobile) 64px;
     }
