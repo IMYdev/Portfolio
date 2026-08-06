@@ -5,54 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMY's Portfolio</title>
+    <meta name="description" content="IMY a.k.a. IMYdev — AI engineering student, video editor and game developer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="bg-layer"></div>
-    <div class="shard shard-1"></div>
-    <div class="shard shard-2"></div>
-    <div class="shard shard-3"></div>
+    <div class="layout">
+        <aside class="nav-panel" aria-label="Primary">
+            <a class="brand" href="#top">IMY<span class="brand-dot">.</span></a>
+            <nav class="nav-tiles">
+                <a class="nav-tile" href="#about">
+                    <span class="nav-tile-index">01</span>
+                    <span class="nav-tile-label">About</span>
+                    <span class="nav-tile-arrow" aria-hidden="true">→</span>
+                </a>
+                <a class="nav-tile" href="#projects">
+                    <span class="nav-tile-index">02</span>
+                    <span class="nav-tile-label">Projects</span>
+                    <span class="nav-tile-arrow" aria-hidden="true">→</span>
+                </a>
+                <a class="nav-tile" href="#contact">
+                    <span class="nav-tile-index">03</span>
+                    <span class="nav-tile-label">Contact</span>
+                    <span class="nav-tile-arrow" aria-hidden="true">→</span>
+                </a>
+            </nav>
+            <p class="nav-caption">This site is a demo for my own design specification: LECP</p>
+        </aside>
 
-    <div class="flash-overlay" id="flash"></div>
-    <div class="unmute" id="unmute-btn">🔇</div>
+        <div class="page">
+            <main id="main">
+                <section id="top" class="hero" aria-labelledby="hero-title">
+                    <p class="hero-eyebrow">Portfolio</p>
+                    <h1 id="hero-title" class="hero-title">IMY</h1>
+                    <p class="hero-sub">Rhino Linux Developer.</p>
+                </section>
 
-    <div class="ui-container" id="view-menu">
-        <div class="logo">IMY's <span>Portfolio</span></div>
-        <nav class="menu">
-            <div class="menu-item" onclick="switchView('about')">
-                <span class="label">About me</span>
-            </div>
-            <div class="menu-item" onclick="switchView('projects')">
-                <span class="label">My projects</span>
-            </div>
-            <a class="menu-item" target="_blank" href="mailto:omranmansour096@gmail.com">
-                <span class="label">Contact me</span>
-            </a>
-            <a class="menu-item" target="_blank" href="https://blog.imy.com.ly">
-                <span class="label">My blog</span>
-            </a>
-            <div class="menu-item" onclick="exitGame()">
-                <span class="label">Disconnect</span>
-            </div>
-        </nav>
-    </div>
+                <section id="about" class="section" aria-labelledby="about-title">
+                    <h2 class="section-title"><span class="section-index">01</span>About me</h2>
+                    <div class="tile-grid">
+                        <article class="tile tile-wide">
+                            <h3 class="tile-label">Who I am</h3>
+                            <p class="tile-body">I'm IMY, a.k.a. IMYdev: an AI Engineering major. I build software, cut videos and also research games' inner workings.</p>
+                        </article>
+                        <article class="tile">
+                            <h3 class="tile-label">AI Engineering</h3>
+                            <p class="tile-body">Applied machine learning systems</p>
+                            <p class="tile-body">(not chatbots)</p>
+                        </article>
+                        <article class="tile">
+                            <h3 class="tile-label">Game Development</h3>
+                            <p class="tile-body">I create small game prototypes sometimes.</p>
+                        </article>
+                    </div>
+                </section>
 
-    <div class="ui-container hidden" id="view-content">
-        <div class="content-view">
-            <h1 class="content-header" id="content-title">Placeholder Title</h1>
-            <div class="content-body">
-                <p id="content-text">Placeholder text.</p>
-            </div>
-            <div class="btn-return" onclick="returnToMenu()">Return</div>
+                <section id="projects" class="section" aria-labelledby="projects-title">
+                    <h2 class="section-title"><span class="section-index">02</span>Projects</h2>
+                    <div class="tile-grid">
+                        <a class="tile tile-featured" href="https://github.com/IMYdev" target="_blank" rel="noopener">
+                            <span class="tile-meta">Open source</span>
+                            <span class="tile-label">GitHub</span>
+                            <span class="tile-body">Explore my open-source projects and contributions.</span>
+                            <span class="tile-arrow" aria-hidden="true">→</span>
+                        </a>
+                        <a class="tile" href="https://www.youtube.com/@pending_faner" target="_blank" rel="noopener">
+                            <span class="tile-meta">Video Editing</span>
+                            <span class="tile-label">YouTube</span>
+                            <span class="tile-body">I make weird stuff.</span>
+                            <span class="tile-arrow" aria-hidden="true">→</span>
+                        </a>
+                        <a class="tile" href="https://blog.imy.com.ly" target="_blank" rel="noopener">
+                            <span class="tile-meta">Writing</span>
+                            <span class="tile-label">Blog</span>
+                            <span class="tile-body">Notes, thoughts and posts.</span>
+                            <span class="tile-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="contact" class="section" aria-labelledby="contact-title">
+                    <h2 class="section-title"><span class="section-index">03</span>Contact</h2>
+                    <div class="tile-grid">
+                        <a class="tile tile-featured tile-primary" href="mailto:omranmansour096@gmail.com">
+                            <span class="tile-meta">Email</span>
+                            <span class="tile-label">Send me a message</span>
+                            <span class="tile-body">I read everything.</span>
+                            <span class="tile-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <span>© 2026 IMY - Design and programming.</span>
+            </footer>
         </div>
     </div>
 
-    <div class="footer">
-        Design and programming - IMY<br>
-        BGM - BRS: The Game.<br>
-        SFX - Mirror's Edge.
-    </div>
     <script src="script.js"></script>
 </body>
 
